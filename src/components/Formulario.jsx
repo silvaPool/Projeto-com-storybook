@@ -1,8 +1,10 @@
 import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
+import "./formulario.css";
+import PropTypes from "prop-types";
 
-const SignupForm = () => {
+export const SignupForm = ({handleCLick}) => {
   return (
     <Formik
       initialValues={{ firstName: "", lastName: "", email: "" }}
@@ -22,21 +24,29 @@ const SignupForm = () => {
         }, 400);
       }}
     >
-      <Form>
+      <Form className="form">
         <label htmlFor="firstName">First Name</label>
-        <Field name="firstName" type="text" />
+        <Field name="firstName" type="text" className="field" />
         <ErrorMessage name="firstName" />
 
         <label htmlFor="lastName">Last Name</label>
-        <Field name="lastName" type="text" />
+        <Field name="lastName" type="text" className="field" />
         <ErrorMessage name="lastName" />
 
         <label htmlFor="email">Email Address</label>
-        <Field name="email" type="email" />
+        <Field name="email" type="email" className="field" />
         <ErrorMessage name="email" />
 
-        <button type="submit">Submit</button>
+        <button type="submit" onClick={handleCLick}>
+          Submit
+        </button>
       </Form>
     </Formik>
   );
+};
+
+SignupForm.PropTypes = {
+  label: PropTypes.string,
+  field: PropTypes.string,
+  handleClick: PropTypes.func,
 };
